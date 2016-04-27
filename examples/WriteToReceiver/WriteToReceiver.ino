@@ -1,8 +1,9 @@
 #include "WifiHobbyReceiver.h"
 #include <String.h>
 
-#define SSID "mynetwork"
-#define PASS "aaronisawesome"
+// Replace with the receivers correct WiFi network name and password
+#define SSID "ezc  wifi  024"
+#define PASS "44444444"
 
 // Create 
 WifiHobbyReceiver recv(SSID, PASS);
