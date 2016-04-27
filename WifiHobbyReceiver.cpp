@@ -6,7 +6,7 @@ IPAddress WifiHobbyReceiver::serverAddress(10, 10, 100, 254);
 
 
 WifiHobbyReceiver::WifiHobbyReceiver(const char* ssid, const char* pass)
-: client(SERVER_PORT_NUM)
+: client()
 {
     strncpy(this->_ssid, ssid, MAX_STR_LEN);
     strncpy(this->_pass, pass, MAX_STR_LEN);
@@ -21,9 +21,10 @@ bool WifiHobbyReceiver::begin()
     while (status != WL_CONNECTED && millis() < start + CONNECT_TIMEOUT) {
       // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
       status = WiFi.begin(_ssid, _pass);
-      delay(1000);
+      if (status != WL_CONNECTED) delay(1000);
     }
 
+    Serial.println("Calling connect");
     return (status == WL_CONNECTED) && client.connect(serverAddress, SERVER_PORT_NUM);
 
 }
@@ -35,13 +36,14 @@ bool WifiHobbyReceiver::write(uint8_t ch1, uint8_t ch2, uint8_t ch3, uint8_t ch4
     memcpy(buf, header, sizeof(header));
 
     uint8_t index = sizeof(header);
-    buf[index++] = ch1 & 255;
-    buf[index++] = ch2 & 255;
-    buf[index++] = ch3 & 255;
-    buf[index++] = ch4 & 255;
-    buf[index++] = '\0';
-    buf[index++] = '\0';
-    buf[index++] = _generateChecksum(buf, index);
+    buf[index++] = ch1;
+    buf[index++] = ch2;
+    buf[index++] = ch3;
+    buf[index++] = ch4;
+    buf[index++] = 255;
+    buf[index++] = 255;
+    buf[index] = _generateChecksum(buf, index);
+    index++;
 
     return _send(buf, index);
 }
@@ -54,7 +56,7 @@ void WifiHobbyReceiver::stop()
 
 uint8_t WifiHobbyReceiver::_generateChecksum(uint8_t *buf, uint8_t len)
 {
-    // If we declare this as a uint8_t, we can use overflwo to do mod operation
+    // If we declare this as a uint8_t, we can use overflow to do mod operation
     uint8_t checksum = 0;
 
     for (int i=0; i < len; i++)
@@ -73,4 +75,9 @@ bool WifiHobbyReceiver::_send(uint8_t *buf, uint8_t len)
     }
 
     return true;
+}
+
+WiFiClient &WifiHobbyReceiver::getClient()
+{
+    return client;
 }

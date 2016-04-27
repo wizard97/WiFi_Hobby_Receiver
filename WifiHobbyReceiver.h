@@ -9,7 +9,7 @@
 
 #include "Arduino.h"
 #include <SPI.h>
-#include <WiFi.h>
+#include <ESP8266WiFi.h>
 #include <String.h>
 
 #define SERVER_PORT_NUM 8899
@@ -24,6 +24,7 @@ public:
     bool begin();
     bool write(uint8_t ch1, uint8_t ch2, uint8_t ch3, uint8_t ch4);
     void stop();
+    WiFiClient &getClient();  
 
     static const uint8_t header[];
     static IPAddress serverAddress;
