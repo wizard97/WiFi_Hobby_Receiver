@@ -1,7 +1,7 @@
 # Arduino WiFi Hobby Receiver Library
 A simply library for communicating with [Hobbyking's 4 Channel RC WiFi receiver](http://www.hobbyking.com/hobbyking/store/__21430__Hobbyking_IOS_Android_4CH_WiFi_Receiver.html)
 
-I reverse engineered the protocol for communicating with these receivers and created an Arduino library for writing to them over WiFi.
+I reverse engineered the protocol for communicating with these receivers and created an Arduino library for writing to them over WiFi. Look in the examples folder for an example sketch, be sure to replace the SSID and PASS with your receiver's credentials.
 
 ## Suported Platforms
 The library uses the [Arduino Wifi Library](https://www.arduino.cc/en/Reference/WiFi) behind the scenes. Any library that provides the same API should work.
