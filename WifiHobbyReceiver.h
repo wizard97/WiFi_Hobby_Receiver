@@ -4,17 +4,23 @@
 */
 
 #ifndef Wifi_Hobby_Reciever
-
 #define Wifi_Hobby_Reciever
-
-#include "Arduino.h"
-#include <SPI.h>
-#include <ESP8266WiFi.h>
-#include <String.h>
 
 #define SERVER_PORT_NUM 8899
 #define MAX_STR_LEN 20
 #define CONNECT_TIMEOUT 10000
+
+// If using ESP8266, use built in wifi, otherwise assume wifi shield
+#ifdef ARDUINO_ARCH_ESP8266
+    #include <ESP8266WiFi.h>
+#else
+    #include <WiFi.h>
+#endif
+
+#include "Arduino.h"
+#include <SPI.h>
+#include <String.h>
+
 
 class WifiHobbyReceiver
 {
@@ -24,7 +30,7 @@ public:
     bool begin();
     bool write(uint8_t ch1, uint8_t ch2, uint8_t ch3, uint8_t ch4);
     void stop();
-    WiFiClient &getClient();  
+    WiFiClient &getClient();
 
     static const uint8_t header[];
     static IPAddress serverAddress;

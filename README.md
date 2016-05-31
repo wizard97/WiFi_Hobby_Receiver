@@ -3,14 +3,14 @@ A simply library for communicating with [Hobbyking's 4 Channel RC WiFi receiver]
 
 I reverse engineered the protocol for communicating with these receivers and created an Arduino library for writing to them over WiFi. Look in the examples folder for an example sketch, be sure to replace the SSID and PASS with your receiver's credentials.
 
-## Suported Platforms
+## Supported Platforms
 The library uses the [Arduino Wifi Library](https://www.arduino.cc/en/Reference/WiFi) behind the scenes. Any library that provides the same API should work.
 
 #### Arduino WiFi Shield
-This Library is compatible with the WiFi shield. To use, replace the `#include <ESP8266WiFi.h>` with `#include <WiFi.h>` at the top of the `WifiHobbyReceiver.h` file.
+This Library is compatible with the WiFi shield. The library will automatically assume you are using the WiFi shield if you are not using the ESP8266 board.
 
 #### ESP8266
-This library works out of the box with the ESP8266 with no changes.
+This Library is compatible with the ESP8266. The library will automatically assume you are using the built in WiFi on the ESP8266 (not the Arduino WiFi shield).
 
 ## Methods
 
