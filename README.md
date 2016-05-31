@@ -11,3 +11,38 @@ This Library is compatible with the WiFi shield. To use, replace the `#include <
 
 ### ESP8266
 This library works out of the box with the ESP8266 with no changes.
+
+## Methods
+
+### Constructor
+```
+WifiHobbyReceiver(const char* ssid, const char* pass)
+```
+Create a WifiHobbyReceiver object with a particular SSID and password.
+#### Arguments:
+<dl>
+  <dt>ssid: </dt><dd>The SSID of the reciever (ex: "ezc  wifi  024"). PAY ATTENTION TO THE SPACES IN THE SSID!</dd>
+  <dt>pass: </dt><dd>The password, usually is 8 of the same digit. Should be on the back of the receiver (ex: "44444444").</dd>
+</dl>
+
+## begin()
+```
+bool begin()
+```
+Try and connect to the receiver and setup the necessary TCP connection.
+
+#### Return:
+True on success
+
+## write()
+```
+bool WifiHobbyReceiver::write(uint8_t ch1, uint8_t ch2, uint8_t ch3, uint8_t ch4)
+```
+Write the specified value to each chanel of the receiver.
+#### Arguments:
+<dl>
+  <dt>ch1-ch4: </dt><dd>The value to write to each chanel, should be between 0-64.</dd>
+</dl>
+
+#### Return:
+True on success
