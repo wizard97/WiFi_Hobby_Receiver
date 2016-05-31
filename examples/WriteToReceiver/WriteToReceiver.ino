@@ -32,7 +32,7 @@ void loop() {
 
   for (int i=0; i < sizeof(vals); i++)
   {
-    vals[i] = (uint8_t)random(0, 255);
+    vals[i] = (uint8_t)random(0, 64);
     Serial.print(F("Writing: "));
     Serial.print(vals[i]);
     Serial.print(F(" to channel "));
