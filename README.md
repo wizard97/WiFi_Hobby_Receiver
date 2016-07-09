@@ -15,7 +15,7 @@ This Library is compatible with the ESP8266. The library will automatically assu
 ## Methods
 
 ### Constructor
-```
+```c++
 WifiHobbyReceiver(const char* ssid, const char* pass)
 ```
 Create a WifiHobbyReceiver object with a particular SSID and password.
@@ -26,15 +26,23 @@ Create a WifiHobbyReceiver object with a particular SSID and password.
 </dl>
 
 ## begin()
-```
+```c++
 bool begin()
 ```
 Try and connect to the receiver and setup the necessary TCP connection.
 #### Return:
 True on success
 
-## write()
+## stop()
+```c++
+void stop()
 ```
+Shut down the TCP connection.
+#### Return:
+Void
+
+## write()
+```c++
 bool write(uint8_t ch1, uint8_t ch2, uint8_t ch3, uint8_t ch4)
 ```
 Write the specified value to each chanel of the receiver.
