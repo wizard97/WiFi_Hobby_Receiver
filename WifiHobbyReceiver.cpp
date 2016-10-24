@@ -24,7 +24,6 @@ bool WifiHobbyReceiver::begin()
       if (status != WL_CONNECTED) delay(1000);
     }
 
-    Serial.println("Calling connect");
     return (status == WL_CONNECTED) && client.connect(serverAddress, SERVER_PORT_NUM);
 
 }
